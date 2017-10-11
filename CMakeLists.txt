@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.5)
+set(Boost_USE_STATIC_LIBS        ON) # only find static libs
+set(Boost_USE_MULTITHREADED      ON)
+set(Boost_USE_STATIC_RUNTIME    OFF)
+find_package(Boost COMPONENTS date_time filesystem system )
+if(Boost_FOUND)
+  include_directories(${Boost_INCLUDE_DIRS})
+  add_executable ( asio-socketcan main.cpp )
+  target_link_libraries(asio-socketcan ${Boost_LIBRARIES})
+endif()
